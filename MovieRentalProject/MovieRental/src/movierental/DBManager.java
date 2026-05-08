@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 
 public class DBManager {
-    static String jdbcURL = "jdbc:postgresql://localhost:5432/";
-    static String username = "";
-    static String password = "";
+    static String jdbcURL = "jdbc:postgresql://localhost:5432/movierental";
+    static String username = "postgres";
+    static String password = "#dis8bled101205*#";
     
     private static Connection connection; 
     

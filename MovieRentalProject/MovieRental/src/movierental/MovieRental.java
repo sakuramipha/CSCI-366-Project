@@ -32,8 +32,55 @@ public class MovieRental {
             switch (userNum) {
             
                 case 1:
-                    //customer methods here
+                        int customerChoice = 0;
+                        Scanner customerScan = new Scanner(System.in);
+                        
+                        while(customerChoice != -1){
+                        System.out.println("Welcome to the customer menu");
+                        System.out.println("Press 1 to add a customer");
+                        System.out.println("Press 2 to remove a customer");
+                        System.out.println("Press 3 to view customer details");
+                        System.out.println("Press -1 to leave this menu");
+        
+                        customerChoice = customerScan.nextInt();
+        
+                        if(customerChoice == 1){
+                            customerScan.nextLine();
+                            System.out.println("Enter first name:");
+                            String first = customerScan.nextLine();
+                            System.out.println("Enter last name:");
+                            String last = customerScan.nextLine();
+                            System.out.println("Enter email:");
+                            String email = customerScan.nextLine();
+                            System.out.println("Enter phone number:");
+                            String phone = customerScan.nextLine();
+                            System.out.println("Enter address ID:");
+                            int addrID = customerScan.nextInt();
+                            System.out.println("Enter membership level:");
+                            int memLevel = customerScan.nextInt();
+            
+                            boolean isAdded = Customer.addCustomer(first, last, email, phone, addrID, memLevel);
+                            if(isAdded){ System.out.println("Customer added successfully"); }
+                            else{ System.out.println("Customer addition didn't work"); }
+                            break;
+                        }
+                        else if(customerChoice == 2){
+                            System.out.println("Enter customer ID to remove:");
+                            int custID = customerScan.nextInt();
+                            boolean isRemoved = Customer.removeCustomer(custID);
+                            if(isRemoved){ System.out.println("Customer removed successfully"); }
+                            else{ System.out.println("Customer removal didn't work"); }
+                            break;
+                        }
+                        else if(customerChoice == 3){
+                            System.out.println("Enter customer ID:");
+                            int custID = customerScan.nextInt();
+                            Customer.getCustomerDetails(custID);
+                            break;
+                        }
+                    }
                     break;
+                    
            
                 case 2:
                     //customer membership methods here
@@ -91,7 +138,47 @@ public class MovieRental {
                     break;
            
                 case 4:
-                     //movie assignment methods here
+                    int assignChoice = 0;
+                    Scanner assignScan = new Scanner(System.in);
+    
+                    while(assignChoice != -1){
+                        System.out.println("Welcome to the movie assignment menu");
+                        System.out.println("Press 1 to rent a movie");
+                        System.out.println("Press 2 to return a movie");
+                        System.out.println("Press 3 to view all active rentals");
+                        System.out.println("Press -1 to leave this menu");
+        
+                        assignChoice = assignScan.nextInt();
+        
+                        if(assignChoice == 1){
+                           System.out.println("Enter customer ID:");
+                           int custID = assignScan.nextInt();
+                           System.out.println("Enter movie ID:");
+                           int movID = assignScan.nextInt();
+                           assignScan.nextLine();
+                            System.out.println("Enter rental date (YYYY-MM-DD):");
+                            String rental = assignScan.nextLine();
+                            System.out.println("Enter return date (YYYY-MM-DD):");
+                            String ret = assignScan.nextLine();
+            
+                            boolean isAssigned = MovieAssignment.assignMovie(custID, movID, rental, ret);
+                            if(isAssigned){ System.out.println("Movie rented successfully"); }
+                            else{ System.out.println("Movie rental didn't work"); }
+                            break;
+                        }
+                        else if(assignChoice == 2){
+                            System.out.println("Enter movie assignment ID to return:");
+                            int assignID = assignScan.nextInt();
+                            boolean isReturned = MovieAssignment.returnMovie(assignID);
+                            if(isReturned){ System.out.println("Movie returned successfully"); }
+                            else{ System.out.println("Movie return didn't work"); }
+                            break;
+                        }
+                        else if(assignChoice == 3){
+                            MovieAssignment.getActiveRentals();
+                            break;
+                        }
+                    }
                     break;
             
                 case 5:
