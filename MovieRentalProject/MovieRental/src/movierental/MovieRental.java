@@ -11,15 +11,12 @@ public class MovieRental {
     public static void main(String[] args) {
         
         try{
-            
-            
         Scanner scan = new Scanner(System.in);
         
         int userNum = 0;
         
         OUTER:
         while (userNum != -1) {
-            
             
             System.out.println("Welcome to the movie rental console");
             System.out.println("Enter the following numbers to access what you need");
@@ -30,9 +27,7 @@ public class MovieRental {
             System.out.println("5 to access the Movie table");
             System.out.println("-1 to exit the console");
             
-            
             userNum = scan.nextInt();
-            
             
             switch (userNum) {
             
@@ -43,34 +38,30 @@ public class MovieRental {
                 case 2:
                     //customer membership methods here
                     
-                    int choice = 0;
+                    int membershipChoice = 0;
                     
                     Scanner customerMembershipScan = new Scanner(System.in);
                     
-                    while(choice != -1){
-                        
+                    while(membershipChoice != -1){
                         System.out.println("Welcome to the customer membership menu");
                         System.out.println("Press 1 to get the records associated with a membership level number");
                         System.out.println("Press 2 to update membership rewards");
                         System.out.println("Press -1 to leave this menu");
                         
+                        membershipChoice = customerMembershipScan.nextInt();
                         
-                        choice = customerMembershipScan.nextInt();
-                        
-                        if(choice == 1){
+                        if(membershipChoice == 1){
                             System.out.println("Enter a number to get the membership reward details");
-                    
-                            
-	
-                        int membershipNum = customerMembershipScan.nextInt();
-            
-                        CustomerMembership customerMembership = CustomerMembership.getCustomerMembershipByMembershipLevel(membershipNum);
-            
-                        System.out.println("Reward Level: " + customerMembership.getLevelRewards());
-                        break;
-                    }
+
+                            int membershipNum = customerMembershipScan.nextInt();
+                
+                            CustomerMembership customerMembership = CustomerMembership.getCustomerMembershipByMembershipLevel(membershipNum);
+                
+                            System.out.println("Reward Level: " + customerMembership.getLevelRewards());
+                            break;
+                        }
                         
-                        else if(choice == 2){
+                        else if(membershipChoice == 2){
                             
                             customerMembershipScan.nextLine();
                             
@@ -90,20 +81,9 @@ public class MovieRental {
                             else{
                                 System.out.println("The update didn't work");
                             }
-                            
-                            
                             break;
-                        }
-                        
-                        
-                        
-                        
+                        }  
                     }
-                    
-                    
-                    
-                    
-                    
                     break;
            
                 case 3:  
@@ -116,6 +96,57 @@ public class MovieRental {
             
                 case 5:
                     //movie methods here
+                    int movieChoice = 0;
+
+                    Scanner movieScan = new Scanner(System.in);
+
+                    while (movieChoice != -1){
+                        System.out.println("Welcome to the movie menu");
+                        System.out.println("Press 1 to add a new movie");
+                        System.out.println("Press 2 to delete a movie");
+                        System.out.println("Press -1 to leave this menu");
+
+                        movieChoice = movieScan.nextInt();
+
+                        if (movieChoice == 1){
+                            movieScan.nextLine();
+
+                            System.out.println("Enter movie name: ");
+                            String movieName = movieScan.nextLine();
+
+                            System.out.println("Enter movie description: ");
+                            String movieDescription = movieScan.nextLine();
+
+                            System.out.println("Enter movie stock: ");
+                            int movieStock = movieScan.nextInt();
+
+                            boolean isAdded = Movie.addMovie(movieName, movieDescription, movieStock);
+
+                            if(isAdded){
+                                System.out.println("Movie added successfully");
+                            }
+                            else{
+                                System.out.println("Movie addition didn't work");
+                            }
+                            break;
+                        }
+
+                        else if(movieChoice == 2){
+                            System.out.println("Enter movie ID to remove: ");
+
+                            int movieID = movieScan.nextInt();
+
+                            boolean isRemoved = Movie.removedMovie(movieID);
+
+                            if(isRemoved){
+                                System.out.println("Movie removed successfully");
+                            }
+                            else{
+                                System.out.println("Movie removal didn't work");
+                            }
+                            break;
+                        }
+                    }
                     break;
                 case -1:
                     break OUTER;
@@ -129,15 +160,9 @@ public class MovieRental {
         System.out.println("You have quit the console.");
         }
         
-        
         catch (SQLException e) {
-            System.out.println("Got a sql exception.");
+            System.out.println("Got an SQL exception.");
             e.printStackTrace();
         } 
-
     }
-    
-    
-    
-    
 }
