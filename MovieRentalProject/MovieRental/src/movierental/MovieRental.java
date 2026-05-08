@@ -51,8 +51,9 @@ public class MovieRental {
                         
                         System.out.println("Welcome to the customer membership menu");
                         System.out.println("Press 1 to get the records associated with a membership level number");
+                        System.out.println("Press 2 to update membership rewards");
                         System.out.println("Press -1 to leave this menu");
-                        //add more categories later
+                        
                         
                         choice = customerMembershipScan.nextInt();
                         
@@ -61,18 +62,40 @@ public class MovieRental {
                     
                             
 	
-                    int membershipNum = customerMembershipScan.nextInt();
+                        int membershipNum = customerMembershipScan.nextInt();
             
-                    CustomerMembership customerMembership = CustomerMembership.getCustomerMembershipByMembershipLevel(membershipNum);
+                        CustomerMembership customerMembership = CustomerMembership.getCustomerMembershipByMembershipLevel(membershipNum);
             
-                    System.out.println("Reward Level: " + customerMembership.getLevelRewards());
-                    break;
+                        System.out.println("Reward Level: " + customerMembership.getLevelRewards());
+                        break;
                     }
                         
-                        
-                        else if(choice == -1){
+                        else if(choice == 2){
+                            
+                            customerMembershipScan.nextLine();
+                            
+                            System.out.println("Enter in the updated reward information");
+                            
+                            String setReward = customerMembershipScan.nextLine();
+                            
+                            System.out.println("Enter in the membership level ID that you'd like to update");
+                            
+                            int membershipNum = customerMembershipScan.nextInt();
+                 
+                            boolean isUpdated = CustomerMembership.updateCustomerMembershipLevelRewards(setReward, membershipNum);
+                            
+                            if(isUpdated){
+                                System.out.println("The update worked successfully");
+                            }
+                            else{
+                                System.out.println("The update didn't work");
+                            }
+                            
+                            
                             break;
                         }
+                        
+                        
                         
                         
                     }
