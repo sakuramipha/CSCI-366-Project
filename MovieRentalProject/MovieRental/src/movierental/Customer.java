@@ -61,4 +61,23 @@ public class Customer {
                 + " | " + rs.getString("level_rewards"));
         }
     }
+    
+    public static void getCustomerCountByMembership() throws SQLException {
+        Connection connection = DBManager.getConnection();
+        
+        String get_customer_count = "SELECT level_of_membership, count(*) AS customer_count "
+                + "FROM customer "
+                + "GROUP BY level_of_membership "
+                + "ORDER BY level_of_membership";
+        
+        PreparedStatement stmt_get_customer_count = connection.prepareStatement(get_customer_count);
+        
+        ResultSet rs = stmt_get_customer_count.executeQuery();
+        while (rs.next()) {
+            System.out.println(
+                "Level " + rs.getInt("level_of_membership") + ": "
+                + rs.getInt("customer_count") + " customer(s)"
+            );
+        }
+    }
 }
