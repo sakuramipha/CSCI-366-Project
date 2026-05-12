@@ -43,6 +43,7 @@ public class MovieRental {
                         System.out.println("Press -1 to leave this menu");
         
                         customerChoice = customerScan.nextInt();
+                        customerScan.nextLine();
         
                         if(customerChoice == 1){
                             customerScan.nextLine();
@@ -96,6 +97,7 @@ public class MovieRental {
                         System.out.println("Press -1 to leave this menu");
                         
                         membershipChoice = customerMembershipScan.nextInt();
+                        customerMembershipScan.nextLine();
                         
                         if(membershipChoice == 1){
                             System.out.println("Enter a number to get the membership reward details");
@@ -135,6 +137,59 @@ public class MovieRental {
            
                 case 3:  
                     //address methods here
+                    int addressChoice = 0;
+                    Scanner addressScan = new Scanner(System.in);
+
+                    while (addressChoice!= -1){
+                        System.out.println("Welcome to the address menu");
+                        System.out.println("Press 1 to add an address");
+                        System.out.println("Press 2 to remove an address");
+                        System.out.println("Press 3 to update an address");
+
+                        addressChoice = addressScan.nextInt();
+                        addressScan.nextLine();
+
+                        if (addressChoice == 1){
+                            System.out.println("Enter street: ");
+                            String street = addressScan.nextLine();
+
+                            System.out.println("Enter city: ");
+                            String city = addressScan.nextLine();
+
+                            System.out.println("Enter state: ");
+                            String state = addressScan.nextLine();
+
+                            System.out.println("Enter zip: ");
+                            String zip = addressScan.nextLine();
+
+                            boolean isAddedAddress = Address.addAddress(street, city, state, zip);
+                            if(isAddedAddress){
+                                System.out.println("Address added successfully");
+                            }
+                            else{
+                                System.out.println("Address addition didn't work");
+                            }
+                            break;
+                        }
+
+                        else if(addressChoice == 2){
+                            System.out.println("Enter address ID: ");
+                            int addressID = addressScan.nextInt();
+
+                            boolean isRemovedAddress = Address.removeAddress(addressID);
+                            if(isRemovedAddress){
+                                System.out.println("Address removed successfully");
+                            }
+                            else{
+                                System.out.println("Address removal didn't work");
+                            }
+                            break;
+                        }
+                        else if(addressChoice == 3){
+                            Address.getCustomerAddresses();
+                            break;
+                        }
+                    }
                     break;
            
                 case 4:
@@ -149,6 +204,7 @@ public class MovieRental {
                         System.out.println("Press -1 to leave this menu");
         
                         assignChoice = assignScan.nextInt();
+                        assignScan.nextLine();
         
                         if(assignChoice == 1){
                            System.out.println("Enter customer ID:");
@@ -194,6 +250,7 @@ public class MovieRental {
                         System.out.println("Press -1 to leave this menu");
 
                         movieChoice = movieScan.nextInt();
+                        movieScan.nextLine();
 
                         if (movieChoice == 1){
                             movieScan.nextLine();
