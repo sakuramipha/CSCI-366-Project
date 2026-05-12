@@ -40,6 +40,7 @@ public class MovieRental {
                         System.out.println("Press 1 to add a customer");
                         System.out.println("Press 2 to remove a customer");
                         System.out.println("Press 3 to view customer details");
+                        System.out.println("Press 4 to get the count of customers with levels of memberships");
                         System.out.println("Press -1 to leave this menu");
         
                         customerChoice = customerScan.nextInt();
@@ -78,6 +79,9 @@ public class MovieRental {
                             int custID = customerScan.nextInt();
                             Customer.getCustomerDetails(custID);
                             break;
+                        }
+                        else if(customerChoice == 4){
+                            Customer.getCustomerCountByMembership();
                         }
                     }
                     break;
