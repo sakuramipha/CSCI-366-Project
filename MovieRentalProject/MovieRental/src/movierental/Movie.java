@@ -53,7 +53,7 @@ public class Movie {
     public static boolean addMovie(String movieName, String movieDescription, int movieStock) throws SQLException{
         Connection connection = DBManager.getConnection();
 
-        String insert_movie = "INSERT INTO movie (movie_name, movie_description, movie_stock)" + "VALUES (? ? ?)";
+        String insert_movie = "INSERT INTO movie (movie_name, movie_description, movie_stock)" + "VALUES (?, ?, ?)";
 
         PreparedStatement stmt_insert_movie = connection.prepareStatement(insert_movie);
 
